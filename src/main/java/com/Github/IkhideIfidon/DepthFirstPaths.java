@@ -42,7 +42,6 @@ public class DepthFirstPaths {
         for (int value = v; value != source; value = edgeTo[value])
             path.push(value);
         path.push(source);
-        System.out.println(Arrays.toString(edgeTo));
         return path;
     }
 
