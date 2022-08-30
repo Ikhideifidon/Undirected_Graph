@@ -1,6 +1,7 @@
 package com.Github.IkhideIfidon;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -36,5 +37,8 @@ public class Main {
 //        FileInputStream file = new FileInputStream("graph.txt");
 //        UndirectedGraph graph2 = new UndirectedGraph(file);
 //        System.out.println(graph2.neighbors(0));
+
+        ConnectedComponents cc = new ConnectedComponents(graph);
+        System.out.println(cc.id(11));
     }
 }
