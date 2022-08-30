@@ -1,5 +1,8 @@
 package com.Github.IkhideIfidon;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class DepthFirstSearch {
     private final boolean[] marked;
     private int count;
@@ -12,11 +15,19 @@ public class DepthFirstSearch {
 
     private void dfs(UndirectedGraph graph, int source) {
         marked[source] = true;
-        count++;
+        Deque<Integer> stack = new LinkedList<>();
+        stack.push(source);
 
-        for(int w : graph.neighbors(source)) {
-            if (!marked[w])
-                dfs(graph, w);
+        while (!stack.isEmpty()) {
+            int current = stack.pop();
+
+            for (int w : graph.neighbors(current)) {
+                if (!marked[w]) {
+                    marked[w] = true;
+                    count++;
+                    stack.push(w);
+                }
+            }
         }
     }
 

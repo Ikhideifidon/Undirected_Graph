@@ -20,15 +20,25 @@ public class DepthFirstPaths {
         dfs(graph, source);
     }
 
-    private void dfs(UndirectedGraph graph, int v) {
-        marked[v] = true;
+    private void dfs(UndirectedGraph graph, int source) {
+        marked[source] = true;
         connectedVertexCount++;
-        for (int w : graph.neighbors(v)) {
-            if (!marked[w]) {                   // Not visited
-                edgeTo[w] = v;
-                dfs(graph, w);
+        Deque<Integer> stack = new LinkedList<>();
+        stack.push(source);
+
+        while (!stack.isEmpty()) {
+            int current = stack.pop();
+
+            for (int w : graph.neighbors(current)) {
+                if (!marked[w]) {
+                    marked[w] = true;
+                    edgeTo[w] = current;
+                    connectedVertexCount++;
+                    stack.push(w);
+                }
             }
         }
+
     }
 
     public boolean hasPathTo(int v) { return marked[v]; }
@@ -48,7 +58,8 @@ public class DepthFirstPaths {
     public List<List<Integer>> allPathsFromSource(int source) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = source; i < connectedVertexCount(); i++) {
-            result.add((List<Integer>) pathTo(i));
+            if (marked[i])
+                result.add((List<Integer>) pathTo(i));
         }
         return result;
     }

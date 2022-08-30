@@ -45,7 +45,7 @@ public class UndirectedGraph {
     public Iterable<Integer> neighbors(int v)  {
         if (0 <= v && v < V)
             return adjacent[v];
-        throw new ArrayIndexOutOfBoundsException(v + "is not a valid vertex");
+        throw new ArrayIndexOutOfBoundsException(v + " is not a valid vertex");
     }
 
     public int degree(int v) {
