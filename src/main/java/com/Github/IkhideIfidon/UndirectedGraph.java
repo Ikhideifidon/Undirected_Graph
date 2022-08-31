@@ -1,15 +1,15 @@
 package com.Github.IkhideIfidon;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 /** we use the names 0 through V - 1 for the vertices in a V-vertex graph.**/
 public class UndirectedGraph {
     private final int V;                                // number of vertices
-    private final int E;                                // number of edges
+    private int E;                                // number of edges
     private final List<Integer>[] adjacent;             // adjacent lists
 
     public UndirectedGraph(int V) {
@@ -21,15 +21,16 @@ public class UndirectedGraph {
             adjacent[i] = new LinkedList<>();
     }
 
-    public UndirectedGraph(FileInputStream in) throws IOException {
-        this(in.read());
-        int E = in.read();
+    public UndirectedGraph(BufferedReader in) throws IOException {
+        this(Integer.parseInt(in.readLine()));
+        this.E = Integer.parseInt(in.readLine());
         for (int i = 0; i < E; i++) {
-            int v = in.read();
-            int w = in.read();
+            // Add an edge
+            String[] stringSplit = in.readLine().split(" ");
+            int v = Integer.parseInt(stringSplit[0]);
+            int w = Integer.parseInt(stringSplit[1]);
             addEdge(v, w);
         }
-        in.close();
     }
 
     public int V() { return V; }

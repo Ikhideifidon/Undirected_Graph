@@ -1,7 +1,6 @@
 package com.Github.IkhideIfidon;
 
-import java.io.IOException;
-import java.util.Arrays;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -14,7 +13,7 @@ public class Main {
 
         int[][] edges2 = {{0, 1}, {0, 2}, {0, 5}, {1, 2}, {2, 3}, {2, 4}, {3, 4}, {3, 5}};
 
-        for (int[] edge : bipartiteEdges)
+        for (int[] edge : edges)
             graph.addEdge(edge[0], edge[1]);
 
         System.out.println(graph);
@@ -37,9 +36,19 @@ public class Main {
         System.out.println(breadthFirstSearch.allPathsFromSource());
 
 
-//        FileInputStream file = new FileInputStream("graph.txt");
-//        UndirectedGraph graph2 = new UndirectedGraph(file);
-//        System.out.println(graph2.neighbors(0));
+        final String file = "graph.txt";
+        try ( FileReader fileReader = new FileReader(file);
+                BufferedReader reader = new BufferedReader(fileReader) )
+
+        {   UndirectedGraph graphFromFile = new UndirectedGraph(reader);
+            System.out.println("This is from the input stream:\n" + graphFromFile.neighbors(0));
+            System.out.println(graphFromFile.V());
+            System.out.println(graphFromFile.E());
+            System.out.println(graphFromFile);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         ConnectedComponents cc = new ConnectedComponents(graph);
         System.out.println(cc.id(11));
