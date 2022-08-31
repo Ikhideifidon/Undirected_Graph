@@ -17,6 +17,8 @@ public class Main {
             graph.addEdge(edge[0], edge[1]);
 
         System.out.println(graph);
+        UndirectedGraph g = new UndirectedGraph(graph);
+        System.out.println(g);
         System.out.println(graph.degree(5));
         System.out.println(graph.maximumDegree());
         System.out.println(graph.neighbors(0));
@@ -45,8 +47,9 @@ public class Main {
             System.out.println(graphFromFile.V());
             System.out.println(graphFromFile.E());
             System.out.println(graphFromFile);
+        }
 
-        } catch (FileNotFoundException e) {
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -58,5 +61,6 @@ public class Main {
 
         Cycle cycle = new Cycle(graph);
         System.out.println(cycle.hasCycle());
+
     }
 }

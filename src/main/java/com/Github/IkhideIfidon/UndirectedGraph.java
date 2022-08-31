@@ -1,10 +1,10 @@
 package com.Github.IkhideIfidon;
 
 import java.io.*;
+import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 /** we use the names 0 through V - 1 for the vertices in a V-vertex graph.**/
 public class UndirectedGraph {
@@ -26,11 +26,27 @@ public class UndirectedGraph {
         this.E = Integer.parseInt(in.readLine());
         for (int i = 0; i < E; i++) {
             // Add an edge
-            String[] stringSplit = in.readLine().split(" ");
+            String[] stringSplit = in.readLine().split("[ \\t]+"); // capture one or more space and tab
             int v = Integer.parseInt(stringSplit[0]);
             int w = Integer.parseInt(stringSplit[1]);
             addEdge(v, w);
         }
+    }
+
+    public UndirectedGraph(UndirectedGraph graph) {
+        this(graph.V);
+
+        Deque<Integer> stack = new LinkedList<>();
+
+        for (int v = 0; v < V; v++) {
+            for (int w : graph.adjacent[v]) {
+                stack.push(w);
+            }
+            while (!stack.isEmpty()) {
+                adjacent[v].add(stack.pop());
+            }
+        }
+        this.E = graph.E;
     }
 
     public int V() { return V; }
@@ -93,7 +109,7 @@ public class UndirectedGraph {
     private String neighborsToString(int v) {
         StringBuilder sb = new StringBuilder("[");
 
-        Iterator<Integer> iter = neighbors(v).iterator();
+        Iterator<Integer> iter = adjacent[v].iterator();
         while (iter.hasNext()) {
             sb.append(iter.next());
             if (iter.hasNext())

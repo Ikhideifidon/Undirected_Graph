@@ -12,7 +12,6 @@ public class Cycle {
             if (!marked[s])
                 dfs(graph, s, s);
         }
-
     }
 
     private void dfs(UndirectedGraph graph, int s, int v) {
@@ -24,7 +23,6 @@ public class Cycle {
                 if (neighbor != v)
                     hasCycle = true;
         }
-
     }
 
     public boolean hasCycle() { return hasCycle; }
