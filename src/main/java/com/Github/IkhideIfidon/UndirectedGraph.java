@@ -36,14 +36,14 @@ public class UndirectedGraph {
     public UndirectedGraph(UndirectedGraph graph) {
         this(graph.V);
 
-        Deque<Integer> stack = new LinkedList<>();
+        Deque<Integer> deque = new LinkedList<>();
 
         for (int v = 0; v < V; v++) {
             for (int w : graph.adjacent[v]) {
-                stack.push(w);
+                deque.offerFirst(w);
             }
-            while (!stack.isEmpty()) {
-                adjacent[v].add(stack.pop());
+            while (!deque.isEmpty()) {
+                adjacent[v].add(deque.pollLast());
             }
         }
         this.E = graph.E;

@@ -1,6 +1,7 @@
 package com.Github.IkhideIfidon;
 
 import java.io.*;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -18,6 +19,8 @@ public class Main {
 
         System.out.println(graph);
         UndirectedGraph g = new UndirectedGraph(graph);
+        System.out.println(g);
+        g.addEdge(1, 3);
         System.out.println(g);
         System.out.println(graph.degree(5));
         System.out.println(graph.maximumDegree());
@@ -38,7 +41,7 @@ public class Main {
         System.out.println(breadthFirstSearch.allPathsFromSource());
 
 
-        final String file = "graph.txt";
+        final String file = "src/main/resources/graph.txt";
         try ( FileReader fileReader = new FileReader(file);
                 BufferedReader reader = new BufferedReader(fileReader) )
 
@@ -61,6 +64,18 @@ public class Main {
 
         Cycle cycle = new Cycle(graph);
         System.out.println(cycle.hasCycle());
+
+        String myFile = "src/main/resources/routes.txt";
+        SymbolGraph st = new SymbolGraph(myFile, " ");
+        System.out.println(st.G());
+
+        Cycle cycle2 = new Cycle(st.G());
+        System.out.println(cycle2.hasCycle());
+        System.out.println(st.contains("atl"));
+        System.out.println(st.index("Mco"));
+        System.out.println(st.name(5));
+
+
 
     }
 }
