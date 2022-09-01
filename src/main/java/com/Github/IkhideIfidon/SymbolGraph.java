@@ -2,6 +2,7 @@ package com.Github.IkhideIfidon;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -40,8 +41,6 @@ public class SymbolGraph {
          } catch (FileNotFoundException e ) {
              e.printStackTrace();
          }
-        System.out.println(map);
-
     }
 
     public boolean contains(String s) {
@@ -58,6 +57,6 @@ public class SymbolGraph {
     public UndirectedGraph G() { return G; }
 
     @Override
-    public String toString() { return this.G.toString(); }
+    public String toString() { return G.toString(); }
 
 }
