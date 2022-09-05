@@ -14,7 +14,9 @@ public class SymbolGraph {
     public SymbolGraph(String stream, String delimiter) {
         map = new LinkedHashMap<>();
         File file = new File(stream);
-         try ( Scanner in = new Scanner(file) ) {
+         try ( Scanner in = new Scanner(file);
+               Scanner input = new Scanner(file) ) {
+
              while (in.hasNextLine()) {
                  String[] vertices = in.nextLine().split(delimiter);
                  for (String vertex : vertices) {
@@ -29,7 +31,6 @@ public class SymbolGraph {
 
              // Build the graph
              G = new UndirectedGraph(map.size());
-             Scanner input = new Scanner(file);
 
              while (input.hasNextLine()) {
                  String[] edgeArray = input.nextLine().split(delimiter);

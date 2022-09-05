@@ -1,7 +1,7 @@
 package com.Github.IkhideIfidon;
 /**
- * -1 denotes RED
- * 1 denotes BLUE
+ * TRUE denotes RED
+ * FALSE denotes BLUE
  * **/
 public class Bipartiteness {
 
